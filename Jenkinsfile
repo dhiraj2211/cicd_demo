@@ -13,7 +13,14 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'echo deploy'
+                sh 'ssh dhiraj@192.168.57.7 "cd cicd_demo;\
+                source venv/bin/activate;\
+                git pull origin main;\
+                pip3 install -r requirments.txt --no-warn-script-location;\
+                python3 manage.py migrate;\
+                deactivate;\
+                sudo systemctl restart nginx;\
+                sudo systemctl restart gunicorn;\"'
             }
         }
     }
