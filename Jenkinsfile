@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'ssh -o StrictHostKeyChecking=no dhiraj@192.168.57.9 "cd polling;\
+                sh 'ssh -o StrictHostKeyChecking=no dhiraj@192.168.57.10 "cd polling;\
                 source env/bin/activate;\
                 git pull origin main;\
                 pip install -r requirements.txt --no-warn-script-location;\
